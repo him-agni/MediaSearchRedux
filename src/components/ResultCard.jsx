@@ -1,10 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addCollection, addedToast } from "../redux/features/collectionSlice";
 
 const ResultCard = ({ item }) => {
+  const dispatch = useDispatch();
   const addToCollection = (item) => {
-    const oldData = JSON.parse(localStorage.getItem("collection")) || [];
-    const newData = [...oldData, item];
-    localStorage.setItem("collection", JSON.strigify(newData));
+    dispatch(addCollection(item));
+    dispatch(addedToast());
   };
   return (
     <div className="w-[18vw] relative h-80 bg-white rounded-xl overflow-hidden">
